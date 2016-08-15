@@ -1,0 +1,5 @@
+<% if @calculation.save %>
+	$('#calculation_result').val("<%=@calculation.operand_one%> <%=@calculation.operator%> <%= @calculation.operand_two%> \nResult: <%= @calculation.result%> \nRecord Id: <%= @calculation.id%>\nCalls Count: <%= @calculation.calls_count %>");
+<% else %>
+	$('#calculation_result').val("error");
+<% end %>

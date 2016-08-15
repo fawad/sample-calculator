@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>Calculator</h1> 
+      <div class="panel panel-default">
+        <div class="panel-body">   
+          <%= form_for(@calculation) do |f| %>
+
+            <div class="form-group">
+              <%= f.number_field :operand_one, class: "form-control", placeholder: "Enter first operand." %>
+            </div>
+            <div class="form-group">
+              <%= f.number_field :operand_two, class: "form-control", placeholder: "Enter second operand."  %>
+            </div>
+            <div class="form-group">
+              <%= f.text_area :result, disabled: true, placeholder: "Result will appear here.", size: "30x4"  %>
+            </div>
+            
+						<div class="clearfix"></div>
+            <div class="row">
+              <%= f.submit "Sum", class: "col-sm-3 btn btn-primary submit-btn", operator: "+" %>
+              <%= f.submit "Difference", class: "col-sm-3 btn btn-primary submit-btn", operator: "-" %>							
+              <%= f.submit "Multiplication", class: "col-sm-3 btn btn-primary submit-btn", operator: "*" %>
+              <%= f.submit "Division", class: "col-sm-3 btn btn-primary submit-btn", operator: "/" %>
+            </div>
+            <br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+function doCheck(){
+    var allFilled = true;
+    $('input[type=number]').each(function(){
+        $(this).valid();
+        if($(this).val() == ''){
+            allFilled = false;
+            return false;
+        }    
+        else if($(this).val() < 0 || $(this).val() > 99){
+          allFilled = false;
+          return false;
+        }
+    });
+    $('input[type=submit]').prop('disabled', !allFilled);
+}
+$(document).ready(function(){
+  $('input[type=submit]').prop('disabled', true);
+    $('input[type=number]').keyup(doCheck).focusout(doCheck);
+});
+$("#new_calculation").validate({
+  rules:{
+    "calculation[operand_one]": {
+        required: true, 
+        ValueOne: true
+      },
+      "calculation[operand_two]":{
+       required: true,
+       ValueTwo: true
+      }
+  }, // end of rules
+  messages: {
+    "calculation[operand_one]":{
+        required: "Please Enter value between 0 to 99" 
+      },
+      "calculation[operand_two]":{
+       required: "Please Enter value between 0 to 99"
+      }
+  }
+  });
+
+$.validator.addMethod( 'ValueOne', function(value, element) {
+   var value_one = $("#calculation_operand_one").val();
+   if (value_one < 0 || value_one > 99) {
+     return false;
+   } else {
+     return true;
+   }
+}, "Value should be between 0 to 99");
+
+$.validator.addMethod( 'ValueTwo', function(value, element) {
+   var value_two = $("#calculation_operand_two").val();
+   if (value_two < 0 || value_two > 99) {
+     return false;
+   } else {
+     return true;
+   }
+}, "Value should be between 0 to 99");
+</script>

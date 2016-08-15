@@ -1,0 +1,26 @@
+.submit-btn{
+    border-color: #FFFFFF !important;
+}
+#calculation_result{
+    white-space: pre-wrap !important;   
+    }
+.total {
+    font-size: 18px;
+    color: green;
+    background: transparent;
+    border: 0;
+    resize: none;
+    height: 54px;
+    overflow: hidden;
+    width: 140px;}
+    .span-total {padding-left: 80px;
+    font-weight: bold;}
+
+#error_explanation {
+    width: 324px !important;}
+    .field_with_errors {
+    padding: 0 !important;
+    background-color: transparent !important;
+    display: block !important;
+    color: red;
+}
