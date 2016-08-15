@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'calculate'
 
 RSpec.describe Calculate, type: :service do
 	calculation = Calculate.new(20,10)
