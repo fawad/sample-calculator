@@ -24,5 +24,10 @@ test:
   database: db/tes_calculator
 
 production:
+  # <<: *default
+  # database: calculator_prod
   <<: *default
-  database: db/prod_calculator
+  adapter: postgresql
+  database: calculator_prod
+  username: root
+  password:
